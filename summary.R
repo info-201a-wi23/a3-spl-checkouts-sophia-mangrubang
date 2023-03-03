@@ -1,6 +1,6 @@
 
 spl_data <- read.csv("~/2022-2023-All-Checkouts-SPL-Data.csv", stringsAsFactors = FALSE)
-View(spl_data)
+
 
 library("dplyr")
 library("stringr")
@@ -11,21 +11,26 @@ ls_book_df <- spl_data %>% filter(str_detect(Creator, "Lemony")) %>% filter(str_
 ls_book_df <- ls_book_df %>% mutate(date = paste0(CheckoutYear, "-", CheckoutMonth, "-01"))
 ls_book_df$date <- as.Date(ls_book_df$date, format = "%Y-%m-%d")
 
-View(ls_book_df)
 
 # created a dataset for all Series of Unfortunate Events eBook checkouts in 2022-23
 SOUE_df <- ls_book_df %>% filter(str_detect(Title, "Series")) %>% filter(str_detect(Title, "Unfortunate")) %>% filter(MaterialType == "EBOOK")
-View(SOUE_df)
+
 
 checkouts <- SOUE_df %>% group_by(Title)  %>% summarize(checkout_count = sum(Checkouts, na.rm = TRUE))
-View(checkouts)
+
+
+checkouts_bb_e <- SOUE_df %>% group_by(Title, date, CheckoutMonth)  %>% filter(str_detect(Title, "Beginning")) %>% summarize(checkout_count = sum(Checkouts, na.rm = TRUE))
+
 
 # make a dataset for or all Series of Unfortunate Events audiobook checkouts in 2022-23
 SOUE_audio_df <- ls_book_df %>% filter(str_detect(Title, "Series")) %>% filter(str_detect(Title, "Unfortunate")) %>% filter(MaterialType == "AUDIOBOOK")
-View(SOUE_audio_df)
+
 
 audio_checkouts <- SOUE_audio_df %>% group_by(Title)  %>% summarize(checkout_count = sum(Checkouts, na.rm = TRUE))
-View(audio_checkouts)
+
+
+checkouts_bb_a <- SOUE_audio_df %>% group_by(Title, date, CheckoutMonth)  %>% filter(str_detect(Title, "Beginning")) %>% summarize(checkout_count = sum(Checkouts, na.rm = TRUE))
+
 
 # Find most checked out ebook/audiobook + num checkouts
 most_checkouts_ebook <- checkouts %>% filter(checkout_count == max(checkout_count, na.rm = TRUE)) %>% pull(Title)
@@ -62,20 +67,20 @@ total_checkout_num <- SOUE_df %>% summarize(Checkouts = sum(Checkouts, na.rm = T
 total_checkout_num
 
 total_audio_checkouts <- SOUE_audio_df %>% group_by(date) %>% summarize(Checkouts = sum(Checkouts, na.rm = TRUE))
-View(total_audio_checkouts)
+
 
 total_audio_checkout_num <- SOUE_audio_df %>% summarize(Checkouts = sum(Checkouts, na.rm = TRUE)) %>% pull(Checkouts)
 total_audio_checkout_num
 
 # change in (The Bad Beginning) ebook checkouts over time
 SOUE_df <- SOUE_df %>% filter(str_detect(Title, "Beginning")) %>% mutate(checkout_change = Checkouts - lag(Checkouts))
-View(SOUE_df)
+
 
 change_in_checkouts_e <- SOUE_df %>% summarize(checkout_change = mean(checkout_change, na.rm = TRUE)) %>% pull(checkout_change)
 change_in_checkouts_e
 
 SOUE_audio_df <- SOUE_audio_df %>% filter(str_detect(Title, "Beginning")) %>% mutate(checkout_change = Checkouts - lag(Checkouts))
-View(SOUE_audio_df)
+
 
 change_in_checkouts_a <- SOUE_audio_df %>% summarize(checkout_change = mean(checkout_change, na.rm = TRUE)) %>% pull(checkout_change)
 change_in_checkouts_a
