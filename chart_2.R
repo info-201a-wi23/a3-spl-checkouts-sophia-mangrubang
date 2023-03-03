@@ -4,13 +4,17 @@ library("dplyr")
 library("stringr")
 library("ggplot2")
 
+ls_book_df <- spl_data %>% filter(str_detect(Creator, "Lemony")) %>% filter(str_detect(Creator, "Snicket"))
+ls_book_df <- ls_book_df %>% mutate(date = paste0(CheckoutYear, "-", CheckoutMonth, "-01"))
+ls_book_df$date <- as.Date(ls_book_df$date, format = "%Y-%m-%d")
+
 SOUE_df <- ls_book_df %>% filter(str_detect(Title, "Series")) %>% filter(str_detect(Title, "Unfortunate")) %>% filter(MaterialType == "EBOOK")
 SOUE_audio_df <- ls_book_df %>% filter(str_detect(Title, "Series")) %>% filter(str_detect(Title, "Unfortunate")) %>% filter(MaterialType == "AUDIOBOOK")
 
 total_checkouts <- SOUE_df %>% group_by(date) %>% summarize(Checkouts = sum(Checkouts, na.rm = TRUE))
-
 total_audio_checkouts <- SOUE_audio_df %>% group_by(date) %>% summarize(Checkouts = sum(Checkouts, na.rm = TRUE))
 
+# create a dataset with total checkouts of the series in both eBook and audiobook form per month
 total_checkouts_ae <- left_join(total_checkouts, total_audio_checkouts, by = "date")
 
 colnames(total_checkouts_ae)[2] = "total_eBooks_checkouts"
