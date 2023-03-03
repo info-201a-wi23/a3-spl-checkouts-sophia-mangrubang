@@ -20,33 +20,21 @@ source("chart_3.R")
 
 ### Introduction
 
-An introduction of the data and a description of the trends/books/items you are choosing to analyze (and why!)
-Testing vscode sync
+The Seattle Public Library’s Checkouts by Title data allows for viewers to gain a deeper understanding of checkout trends within Seattle’s library system. Providing information about every book or media that has been checked out since 2005, the data can tell users about the popularity and various aspects of books, eBooks, audiobooks, and other forms of physical and electronic media. I chose to focus on one of my favorite childhood series, A Series of Unfortunate Events, written by Lemony Snicket. This series is offered in both eBook and Audiobook form at the Seattle Public Library. Because these books were such a large part of my childhood, I was interested to explore its popularity in this generation of kids. The series has had many renditions during and after its publication which ended in 2006. The series has been retold in both a movie which came out in 2004, as well as a popular series airing on Netflix from 2017-2019. Since the story have managed to stay relevant, let’s see if the books have done the same. 
 
 ### Summary Information
 
+```{r echo=FALSE, warning=FALSE, message=FALSE, results="hide", code = readLines("summary.R"), message = FALSE}
+
+```
+
 Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
 
-These will likely be calculated using your DPLYR skills, answering questions such as:
-
-- What is the average number of checkouts for each item?
-- What is the month or year with the most/least checkouts for a book that you're interested in?
-- What is the month or year with the most/least checkouts for ebooks?
-- How has the number of print book checkouts changed over time?
-
-Feel free to calculate and report values that you find relevant.
+I looked at the checkout data of the series from January 2022 to January 2023. The total amount of checkouts of every eBook in the series was `r total_checkout_num`, while the total amount of checkouts for the audiobooks was `r total_audio_checkout_num`. The most checked out eBook in the series was `r most_checkouts_ebook` with `r amount_checkouts`, this was the same for the audiobook series with `r amount_audio_checkouts`. The first book’s eBook, The Bad Beginning, was checked out most in `r bb_highest_month`, `r bb_highest_year`, the audiobook version was checked out most in `r bb_highest_audio_month`, `r bb_highest_audio_year`. Overall the average change in checkout per month for eBooks was `r change_in_checkouts_e`, while the average change per month for audiobooks was `r change_in_checkouts_a`. Overall, this shows us that the audiobooks are generally more popular than the eBooks. Both series’ are pretty consistently checked out each month, not gaining a large amount of readers, but not losing readers either. The first book is by far the most popular for both versions, showing that there is still continual interest in starting the series in today’s readers. 
 
 ### The Dataset
 
-- Who collected/published the data?
-  The seattle public library
-- What are the parameters of the data (dates, number of checkouts, kinds of books, etc.)?
-  
-- How was the data collected or generated?  
-- Why was the data collected?  
-- What, if any, ethical questions do you need to consider when working with this data?  
-- What are possible limitations or problems with this data?   (at least 200 words)
-
+The Checkouts by Title dataset was aggregated and published by the Seattle Public Library. This extensive dataset was started in April 2005 and is updated monthly. Because this dataset is so large, I used the data of all checkouts from 2022-2023 to create a smaller dataset for my own project. For this dataset, I chose to focus on Lemony Snicket’s, A Series of Unfortunate Events Book series. The dataset consists of each checked out book’s usage class, checkout type, material type, checkout year, checkout month, checkouts, title, ISBN, creator, subjects, publisher, and publication year. The data was collected from multiple sources, but because this particular series is only offered in eBook and audiobook format, its usage data is provided by OverDrive, hoopla, Freegal, and RBDigital. The Checkouts by Title data was first collected by George Legrady’s art installation in the Central Library. This art piece had been recording checkout data since 2005, and was later used by the Seattle Public Library to create this dataset and share it with Seattle’s open data portal. The dataset was published as part of the Open Data Initiative, urging cities to be transparent with their public data as a means to promote public interaction and problem solving. Because the data is anonymous in both exact checkout date and recipient, there aren’t any ethical implications of publicly sharing this data. However, there are limitations with the data due to the way dates are displayed. Because they don’t use days, they have split up the month and the year column. This makes it more difficult to plot trends overtime since it requires you to combine the month and year columns or create another date column. Though not impossible, not having precise dates makes it harder to see precise trends in the data, as well as organize checkout data in relation to the time period. 
 
 ### First Trends Over Time Chart
 

@@ -355,42 +355,84 @@ display: none;
 
 <div id="introduction" class="section level3">
 <h3>Introduction</h3>
-<p>An introduction of the data and a description of the
-trends/books/items you are choosing to analyze (and why!)</p>
+<p>The Seattle Public Library’s Checkouts by Title data allows for
+viewers to gain a deeper understanding of checkout trends within
+Seattle’s library system. Providing information about every book or
+media that has been checked out since 2005, the data can tell users
+about the popularity and various aspects of books, eBooks, audiobooks,
+and other forms of physical and electronic media. I chose to focus on
+one of my favorite childhood series, A Series of Unfortunate Events,
+written by Lemony Snicket. This series is offered in both eBook and
+Audiobook form at the Seattle Public Library. Because these books were
+such a large part of my childhood, I was interested to explore its
+popularity in this generation of kids. The series has had many
+renditions during and after its publication which ended in 2006. The
+series has been retold in both a movie which came out in 2004, as well
+as a popular series airing on Netflix from 2017-2019. Since the story
+have managed to stay relevant, let’s see if the books have done the
+same.</p>
 </div>
 <div id="summary-information" class="section level3">
 <h3>Summary Information</h3>
+<pre><code>## [1] &quot;The Bad Beginning: A Series of Unfortunate Events, Book 1&quot;</code></pre>
+<pre><code>## [1] 67</code></pre>
+<pre><code>## [1] &quot;The Bad Beginning: A Series of Unfortunate Events, Book 1 (unabridged)&quot;</code></pre>
+<pre><code>## [1] 197</code></pre>
+<pre><code>## [1] 10</code></pre>
+<pre><code>## [1] 2022</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] 2023</code></pre>
+<pre><code>## [1] 531</code></pre>
+<pre><code>## [1] 927</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre><code>## [1] 0.25</code></pre>
 <p>Write a summary paragraph of findings that includes the 5 values
 calculated from your summary information R script</p>
-<p>These will likely be calculated using your DPLYR skills, answering
-questions such as:</p>
-<ul>
-<li>What is the average number of checkouts for each item?</li>
-<li>What is the month or year with the most/least checkouts for a book
-that you’re interested in?</li>
-<li>What is the month or year with the most/least checkouts for
-ebooks?</li>
-<li>How has the number of print book checkouts changed over time?</li>
-</ul>
-<p>Feel free to calculate and report values that you find relevant.</p>
+<p>I looked at the checkout data of the series from January 2022 to
+January 2023. The total amount of checkouts of every eBook in the series
+was 531, while the total amount of checkouts for the audiobooks was 927.
+The most checked out eBook in the series was The Bad Beginning: A Series
+of Unfortunate Events, Book 1 with 67, this was the same for the
+audiobook series with 197. The first book’s eBook, The Bad Beginning,
+was checked out most in 10, 2022, the audiobook version was checked out
+most in 1, 2023. Overall the average change in checkout per month for
+eBooks was 0, while the average change per month for audiobooks was
+0.25. Overall, this shows us that the audiobooks are generally more
+popular than the eBooks. Both series’ are pretty consistently checked
+out each month, not gaining a large amount of readers, but not losing
+readers either. The first book is by far the most popular for both
+versions, showing that there is still continual interest in starting the
+series in today’s readers.</p>
 </div>
 <div id="the-dataset" class="section level3">
 <h3>The Dataset</h3>
-<ul>
-<li><p>Who collected/published the data? The seattle public
-library</p></li>
-<li><p>What are the parameters of the data (dates, number of checkouts,
-kinds of books, etc.)?</p></li>
-<li><p>How was the data collected or generated?<br />
-</p></li>
-<li><p>Why was the data collected?<br />
-</p></li>
-<li><p>What, if any, ethical questions do you need to consider when
-working with this data?<br />
-</p></li>
-<li><p>What are possible limitations or problems with this data? (at
-least 200 words)</p></li>
-</ul>
+<p>The Checkouts by Title dataset was aggregated and published by the
+Seattle Public Library. This extensive dataset was started in April 2005
+and is updated monthly. Because this dataset is so large, I used the
+data of all checkouts from 2022-2023 to create a smaller dataset for my
+own project. For this dataset, I chose to focus on Lemony Snicket’s, A
+Series of Unfortunate Events Book series. The dataset consists of each
+checked out book’s usage class, checkout type, material type, checkout
+year, checkout month, checkouts, title, ISBN, creator, subjects,
+publisher, and publication year. The data was collected from multiple
+sources, but because this particular series is only offered in eBook and
+audiobook format, its usage data is provided by OverDrive, hoopla,
+Freegal, and RBDigital. The Checkouts by Title data was first collected
+by George Legrady’s art installation in the Central Library. This art
+piece had been recording checkout data since 2005, and was later used by
+the Seattle Public Library to create this dataset and share it with
+Seattle’s open data portal. The dataset was published as part of the
+Open Data Initiative, urging cities to be transparent with their public
+data as a means to promote public interaction and problem solving.
+Because the data is anonymous in both exact checkout date and recipient,
+there aren’t any ethical implications of publicly sharing this data.
+However, there are limitations with the data due to the way dates are
+displayed. Because they don’t use days, they have split up the month and
+the year column. This makes it more difficult to plot trends overtime
+since it requires you to combine the month and year columns or create
+another date column. Though not impossible, not having precise dates
+makes it harder to see precise trends in the data, as well as organize
+checkout data in relation to the time period.</p>
 </div>
 <div id="first-trends-over-time-chart" class="section level3">
 <h3>First Trends Over Time Chart</h3>
