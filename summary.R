@@ -61,7 +61,6 @@ bb_highest_audio_year
 
 # Total checkouts for audiobooks and ebooks per month, table + total num
 total_checkouts <- SOUE_df %>% group_by(date) %>% summarize(Checkouts = sum(Checkouts, na.rm = TRUE))
-View(total_checkouts)
 
 total_checkout_num <- SOUE_df %>% summarize(Checkouts = sum(Checkouts, na.rm = TRUE)) %>% pull(Checkouts)
 total_checkout_num

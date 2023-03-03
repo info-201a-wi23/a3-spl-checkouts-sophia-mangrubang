@@ -8,10 +8,8 @@ SOUE_df <- ls_book_df %>% filter(str_detect(Title, "Series")) %>% filter(str_det
 SOUE_audio_df <- ls_book_df %>% filter(str_detect(Title, "Series")) %>% filter(str_detect(Title, "Unfortunate")) %>% filter(MaterialType == "AUDIOBOOK")
 
 total_checkouts <- SOUE_df %>% group_by(date) %>% summarize(Checkouts = sum(Checkouts, na.rm = TRUE))
-View(total_checkouts)
 
 total_audio_checkouts <- SOUE_audio_df %>% group_by(date) %>% summarize(Checkouts = sum(Checkouts, na.rm = TRUE))
-View(total_audio_checkouts)
 
 total_checkouts_ae <- left_join(total_checkouts, total_audio_checkouts, by = "date")
 
